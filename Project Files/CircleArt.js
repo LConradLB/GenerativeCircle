@@ -4,15 +4,12 @@ var circles = []
 function setup() {
   createCanvas(displayWidth,displayHeight)
 	background(20)
-  //circles[circles.length] = new circle(3,100,100,30).drawCircle()
-	//ellipse(30, 30, 10)
 	noFill()
 	createGridOfCircles(60,120, 6, 10)
 	
 }
 
 function draw() {
-  //background(220)
   noSmooth()
 }
 
@@ -50,12 +47,10 @@ class circle{
   drawCircle(){
 		ellipseMode(CENTER)
     noFill()
-    //ellipse(this.xPosition, this.yPosition, this.diameter)
     while(this.totalLines < this.numberOfLines){
-      //lines[lines.length] = new Circleline(this.xPosition, this.yPosition, this.diameter)
-			new Circleline(this.xPosition, this.yPosition, this.diameter)
-      this.totalLines++
-			//console.log("new Line: " + lines[lines.length -1])
+	    
+	new Circleline(this.xPosition, this.yPosition, this.diameter)
+	      this.totalLines++
     }
   }
 }
@@ -80,16 +75,7 @@ class Circleline{
     var y1 = this.circleY + this.circleRadius * sin(this.angleFromOrigin)
     var y2 = this.circleY - this.circleRadius * sin(this.angleFromOrigin+this.randomAngle )
     var lineCreated = false
-		//console.log(x1,y1,x2,y2)
-		line(x1,y1,x2,y2)
-	 //line(40,50,100,200)
-    // while(!lineCreated){
-    //   if(this.checkIfOnDiameter(x1,y1) && this.checkIfOnDiameter(x2,y2)){
-    //     line(x1,y1,x2,y2)
-    //     lineCreated = true
-    //     console.log("line created")
-    //   }
-    // }
+    line(x1,y1,x2,y2)
  }
  
   checkIfOnDiameter(x,y){
