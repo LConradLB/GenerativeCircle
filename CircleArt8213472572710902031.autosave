@@ -1,0 +1,81 @@
+var lines = []
+var circles = []
+
+function setup() {
+  createCanvas(600,600)
+  //circles[circles.length] = new circle(3,100,100,30).drawCircle()
+	ellipse(30, 30, 10)
+	noFill()
+	new circle(3,100,100,30)
+}
+
+function draw() {
+  //background(220)
+  noSmooth()
+}
+
+class circle{
+  constructor(numberOfLines, xPos, yPos, Diameter){
+    this.xPosition = xPos
+    this.yPosition = yPos
+    this.diameter = Diameter
+    this.numberOfLines = numberOfLines
+    this.totalLines = 0
+		this.drawCircle()
+  }
+  
+  drawCircle(){
+		ellipseMode(CENTER)
+    noFill()
+    ellipse(this.xPosition, this.yPosition, this.diameter)
+    while(this.totalLines < this.numberOfLines){
+      //lines[lines.length] = new Circleline(this.xPosition, this.yPosition, this.diameter)
+			new Circleline(this.xPosition, this.yPosition, this.diameter)
+      this.totalLines++
+			console.log("new Line: " + lines[lines.length -1])
+    }
+  }
+}
+
+class Circleline{
+ constructor(circleX,circleY,circleDiameter){
+    this.circleX = circleX
+    this.circleY = circleY
+    this.circleRadius = circleDiameter/2
+	  this.angleFromOrigin = random(0,360)
+	 	this.xOne = circleX;
+	 	this.yOne = circleY;
+	 
+    this.drawLine()
+	 
+
+ }
+ 
+ drawLine(){
+    stroke(0)
+    strokeWeight(3)
+    var x1 = this.circleX + this.circleRadius * cos(this.angleFromOrigin)
+    var x2 = this.circleX - this.circleRadius * cos(this.angleFromOrigin)
+    var y1 = this.circleY + this.circleRadius * sin(this.angleFromOrigin)
+    var y2 = this.circleY - this.circleRadius * sin(this.angleFromOrigin)
+    var lineCreated = false
+		console.log(x1,y1,x2,y2)
+		line(x1,y1,x2,y2)
+	 line(40,50,100,200)
+    // while(!lineCreated){
+    //   if(this.checkIfOnDiameter(x1,y1) && this.checkIfOnDiameter(x2,y2)){
+    //     line(x1,y1,x2,y2)
+    //     lineCreated = true
+    //     console.log("line created")
+    //   }
+    // }
+ }
+ 
+  checkIfOnDiameter(x,y){
+    if( abs(sqrt(((x - this.circleX)*(x - this.circleX) )+ ((y - this.circleY)*(y - this.circleY)))) == this.circleRadius){
+      return true
+    }else{
+      return false
+    }
+  }
+ }

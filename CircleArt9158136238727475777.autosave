@@ -1,0 +1,62 @@
+var lines = []
+var circles = []
+
+function setup() {
+  createCanvas(600,600)
+  circles[circles.length] = new circle(3,100,100,30)
+}
+
+function draw() {
+  background(220)
+  noSmooth()
+}
+
+class circle{
+  constructor(numberOfLines, xPos, yPos, Diameter){
+    this.xPosition = xPos
+    this.yPosition = yPos
+    this.diameter = Diameter
+    this.numberOfLines = numberOfLines
+    this.totalLines = 0
+  }
+  
+  drawCircle(){
+    while(this.totalLines < this.numberOfLines){
+      lines[lines.length] = new line(this.xPosition, this.yPosition, this.diameter).drawLine()
+      totalLines++
+    }
+  }
+}
+
+class line{
+ constructor(circleX,circleY,circleDiameter){
+   this.circleX = circleX
+   this.circleY = circleY
+   this.circleRadius = circleDiameter/2
+ }
+ 
+ drawLine(){
+   stroke(255)
+   strokeWeight(3)
+   var x1 = random(this.xOne-circleRadius,this.xOne+circleRadius)
+   var x2 = random(this.xOne-circleRadius,this.xOne+circleRadius)
+   var y1 = random(this.yOne-circleRadius,this.yOne+circleRadius)
+   var y2 = random(this.yOne-circleRadius,this.yOne+circleRadius)
+   var lineCreated = false
+   while(!lineCreated){
+     if(checkIfOnDiameter(x1,y1) && checkIfOnDiameter(x2,y2)){
+       line(x1,y1,x2,y2)
+       lineCreated = true
+       console.log("line created")
+     }
+   }
+ }
+ 
+   checkIfOnDiameter(x,y){
+     if( abs(sqrt(((x - this.circleX)*(x - this.circleX) )+ ((y - this.circleY)*(y - this.circleY)))) == this.circleRadius){
+       return true
+     }else{
+       return false
+     }
+  }
+ }
